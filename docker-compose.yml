@@ -1,0 +1,19 @@
+services:
+  postgres-cli-file-manager:
+    image: postgres:17-alpine
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES__PORT}:${POSTGRES__PORT}
+    environment:
+      - POSTGRES_USER=${POSTGRES__USER}
+      - POSTGRES_PASSWORD=${POSTGRES__PASSWORD}
+      - POSTGRES_DB=${POSTGRES__DB}
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES__USER} -d ${POSTGRES__DB} -p ${POSTGRES__PORT}" ]
+      interval: 2s
+      timeout: 5s
+      retries: 10
+    command: -p ${POSTGRES__PORT}
+    restart: unless-stopped
+
