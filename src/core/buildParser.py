@@ -17,6 +17,10 @@ def build_parser():
     sp.add_argument("path", nargs="?", default=".")
     sp.set_defaults(func=fileManager.list)
 
+    sp = sub.add_parser("logs", help="List directory")
+    sp.add_argument("path", nargs="?", default=".")
+    sp.set_defaults(func=fileManager.show_logs)
+
     # read
     sp = sub.add_parser("read", help="Read file")
     sp.add_argument("path")

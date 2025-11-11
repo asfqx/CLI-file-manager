@@ -1,3 +1,5 @@
+from sqlalchemy.orm import selectinload
+
 from src.operations.operations import Operations
 from sqlalchemy import insert, select
 from src.core.databaseAccessor import db
@@ -18,7 +20,9 @@ class OperationAccessor:
         return result.scalar_one()
 
     async def fetch_all(self) -> list[Operations] | None:
-        stmt = select(Operations)
+        stmt = select(Operations).options(
+            selectinload(Operations.file), selectinload(Operations.user)
+        )
         result = await db.execute(stmt)
         return result.scalars().all()
 

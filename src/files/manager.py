@@ -244,5 +244,21 @@ class FileManager:
             )
             await operationsAccessor.create(operation)
 
+    async def show_logs(self, args=None):
+        user = is_authenticated()
+        if not user:
+            print("Not authenticated")
+
+        operations = await operationsAccessor.fetch_all()
+
+        if not operations:
+            print("No operations found")
+            return
+
+        for op in operations:
+            timestamp = op.created_at.strftime("%d.%m.%y %H:%M")
+            file_name = getattr(op.file, "file_name", "unknown")
+            print(f"{timestamp} - {op.type} {file_name} by {op.user.username}")
+
 
 fileManager = FileManager()

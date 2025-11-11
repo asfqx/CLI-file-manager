@@ -33,7 +33,7 @@ class DatabaseAccessor:
         if self._engine is None:
             self._engine = create_async_engine(
                 url=config.database.url,
-                echo=True,
+                echo=False,
             )
         if self._session_maker is None:
             self._session_maker = async_sessionmaker(
