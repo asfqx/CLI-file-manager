@@ -5,8 +5,8 @@ from src.core.config import config
 import typing
 
 if typing.TYPE_CHECKING:
-    from src.models.users import User
-    from src.models.operations import Operations
+    from src.users.users import User
+    from src.operations.operations import Operations
 
 
 class Files(BaseModel):

@@ -5,6 +5,7 @@ argparse==1.4.0
 asyncpg==0.30.0
 cached-property==2.0.1
     # via sqlalchemy-orm
+defusedxml==0.7.1
 dotenv==0.9.9
 greenlet==3.2.4
     # via sqlalchemy
@@ -16,6 +17,7 @@ markupsafe==3.0.3
     # via mako
 mypy-extensions==1.1.0
     # via typing-inspect
+passlib==1.7.4
 psycopg2==2.9.11
 python-dotenv==1.2.1
     # via dotenv

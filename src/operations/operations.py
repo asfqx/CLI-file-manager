@@ -1,13 +1,13 @@
 from src.core.models.models import BaseModel
 from sqlalchemy import DateTime, func, BigInteger, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from src.enum import OperationType
+from src.operations.enum import OperationType
 
 import typing
 
 if typing.TYPE_CHECKING:
-    from src.models.files import Files
-    from src.models.users import User
+    from src.files.files import Files
+    from src.users.users import User
 
 
 class Operations(BaseModel):

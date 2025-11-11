@@ -61,7 +61,7 @@ class DatabaseAccessor:
     async def session(self) -> AsyncGenerator[AsyncSession, None]:
         scoped_session = async_scoped_session(
             session_factory=self.session_maker,
-            scoped_session=current_task,
+            scopefunc=current_task,
         )
 
         async with scoped_session() as session:
@@ -105,3 +105,6 @@ class DatabaseAccessor:
 
         async with self.session() as session:
             return await session.execute(statement)
+
+
+db = DatabaseAccessor()
